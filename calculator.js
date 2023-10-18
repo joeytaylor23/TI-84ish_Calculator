@@ -1,75 +1,78 @@
-const currValues = document.querySelector(".current_values");
-const prevValues = document.querySelector("previous_values");
-const operands = document.querySelector(".operation");
-const deletion = document.querySelector(".delete");
-const clear = document.querySelector(".clear");
-const equal = document.querySelector(".equal");
-const numbers = document.querySelector(".number");
-const negative = document.querySelector(".negative_value");
-const decimal = document.querySelector(".decimal");
+const currDisplay = document.querySelector(".curr-display");
+const prevDisplay = document.querySelector(".prev-display");
+const numbers = document.querySelectorAll(".number");
+const operands = document.querySelectorAll(".operation");
+const clearBtn = document.querySelector(".clear");
+const delBtn = document.querySelector(".delete");
+const equalBtn = document.querySelector(".equal");
 let operation;
 
 function appendNumber(number) {
-    if (number === "." && currValues.innerText === ""){
-        currValues.innerText += numbers;
-        return;
-    }
+  if (number === "." && currDisplay.innerText.includes(".")) return;
+  currDisplay.innerText += number;
 }
-function chooseOperation(operands) {
-    if (currValues.innerText === ""){
-        compute(operands);
-        operation = operands;
-        currValues.innerText += operands;
-        prevValues.innerText += currValues.innerText;
-        currValues.innerText = "";
-    }
-}
-function clearDisplay() {
-    currValues.innerText = "";
-    prevValues.innerText = "";
-}
-function compute(operands) {
-    let result;
-    const prev_val = parseFloat(prevValues.innerText);
-    const curr_val = parseFloat(currValues.innerText);
 
-    if (isNaN(prev_val) || isNan(curr_val)) return;
-    
-    switch (operation){
-        case "plus":
-            result = prev_val + curr_val;
-        break;
-        case "subtract":
-            result = prev_val - curr_val;
-        break;
-        case "multiply":
-            result = prev_val * curr_val;
-        break;
-        case "divide":
-            result = prev_val / curr_val;
-        break;
-        default:
-            return;
-    }
-    currValues.innerText = result;
+function chooseOperation(operand) {
+  if (currDisplay.innerText === "") return;
+  compute(operand);
+  operation = operand;
+  currDisplay.innerText += operand;
+  prevDisplay.innerText = currDisplay.innerText;
+  currDisplay.innerText = "";
 }
-number.forEach((numbers) => {
-    numbers.addEventListener("click", () => {
-        appendNumber(numbers.innerText)
-    });
+
+function clearDisplay() {
+  currDisplay.innerText = "";
+  prevDisplay.innerText = "";
+}
+
+function compute(operand) {
+  let result;
+  const previousValue = parseFloat(prevDisplay.innerText);
+  const currentValue = parseFloat(currDisplay.innerText);
+
+  if (isNaN(previousValue) || isNaN(currentValue)) return;
+
+  switch (operation) {
+    case "+":
+      result = previousValue + currentValue;
+      break;
+    case "-":
+      result = previousValue - currentValue;
+      break;
+    case "*":
+      result = previousValue * currentValue;
+      break;
+    case "/":
+      result = previousValue / currentValue;
+      break;
+    default:
+      return;
+  }
+  currDisplay.innerText = result;
+}
+
+numbers.forEach((number) => {
+  number.addEventListener("click", () => {
+    appendNumber(number.innerText);
+  });
 });
-operands.forEach((operands) => {
-    operands.addEventListener("click", () =>{
-    chooseOperation(operands.innerText);
-    });
+
+operands.forEach((operand) => {
+  operand.addEventListener("click", () => {
+    chooseOperation(operand.innerText);
+  });
 });
-clear.addEventListener("click", () => {
-    clearDisplay();
+
+clearBtn.addEventListener("click", () => {
+  clearDisplay();
 });
-equal.addEventListener("click", () => {
-    compute();
-    prevValues.innerText = "";
+
+equalBtn.addEventListener("click", () => {
+  compute();
+  prevDisplay.innerText = "";
 });
-deletion.addEventListener("click", () => {
-    currValues.innerText = currValues.innerText.slice(0, -1);
+
+delBtn.addEventListener("click", () => {
+  currDisplay.innerText = currDisplay.innerText.slice(0, -1);
 });
