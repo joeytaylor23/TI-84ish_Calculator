@@ -1,36 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="calculator.css">
-</head>
+<<!DOCTYPE html>
+<html lang="en">
 
-<body>
-    <h1>TI-84(ish) Calculator</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="calculator.css" />
+    <script src="./calculator.js" defer></script>
+  </head>
+
+  <body>
     <div class="calculator">
-        <div class="calculator_text">
-            <div class="previous_values"></div>
-            <div class="current_values"></div>
-        </div>
-    <input type="button" class="clear" value="C">
-    <input type="button" class="delete" value="DELETE">
-    <input type="button" class="number" value="1">
-    <input type="button" class="number" value="2">
-    <input type="button" class="number" value="3">
-    <input type="button" class="number" value="4">
-    <input type="button" class="number" value="5">
-    <input type="button" class="number" value="6">
-    <input type="button" class="number" value="7">
-    <input type="button" class="number" value="8">
-    <input type="button" class="number" value="9">
-    <input type="button" class="number" value="0">
-    <input type="button" class="negative_value" value="(-)">
-    <input type="button" class="operation" value="+">
-    <input type="button" class="operation" value="-">
-    <input type="button" class="operation" value="X">
-    <input type="button" class="operation" value="/">
-    <input type="button" class="decimal" value=".">
-    <input type="button" class="equal" value="ENTER">
-</div>
-</body>
+      <div class="output">
+        <div class="prev-display"></div>
+        <div class="curr-display"></div>
+      </div>
+      <button class="span-2 clear">C</button>
+      <button class="delete">DEL</button>
+      <button class="operation">/</button>
+      <button class="number">9</button>
+      <button class="number">8</button>
+      <button class="number">7</button>
+      <button class="operation">+</button>
+      <button class="number">6</button>
+      <button class="number">5</button>
+      <button class="number">4</button>
+      <button class="operation">-</button>
+      <button class="number">3</button>
+      <button class="number">2</button>
+      <button class="number">1</button>
+      <button class="operation">x</button>
+      <button class="number">.</button>
+      <button class="number">0</button>
+      <button class="span-2 equal">=</button>
+    </div>
+  </body>
 </html>
